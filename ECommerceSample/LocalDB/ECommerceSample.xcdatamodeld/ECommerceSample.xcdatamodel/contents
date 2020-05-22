@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D76" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
+    <entity name="Categories" representedClassName="Categories" syncable="YES">
+        <attribute name="child_categories" optional="YES" attributeType="Transformable" customClassName="[Int]"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <relationship name="hasProducts" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Products" inverseName="belongsToCategories" inverseEntity="Products"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Products" representedClassName="Products" syncable="YES">
+        <attribute name="date_added" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="order_count" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="shares" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="view_count" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <relationship name="belongsToCategories" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Categories" inverseName="hasProducts" inverseEntity="Categories"/>
+        <relationship name="hasTax" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Tax" inverseName="belongsToProduct" inverseEntity="Tax"/>
+        <relationship name="hasVariants" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="Variants" inverseName="belongsToProduct" inverseEntity="Variants"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Rankings" representedClassName="Rankings" syncable="YES">
+        <attribute name="key" optional="YES" attributeType="String"/>
+        <attribute name="ranking" optional="YES" attributeType="String"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="ranking"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Tax" representedClassName="Tax" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String"/>
+        <attribute name="value" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <relationship name="belongsToProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Products" inverseName="hasTax" inverseEntity="Products"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="name"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <entity name="Variants" representedClassName="Variants" syncable="YES">
+        <attribute name="color" optional="YES" attributeType="String"/>
+        <attribute name="id" optional="YES" attributeType="Integer 64" usesScalarValueType="YES"/>
+        <attribute name="price" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <attribute name="size" optional="YES" attributeType="Double" usesScalarValueType="YES"/>
+        <relationship name="belongsToProduct" optional="YES" maxCount="1" deletionRule="Nullify" destinationEntity="Products" inverseName="hasVariants" inverseEntity="Products"/>
+        <uniquenessConstraints>
+            <uniquenessConstraint>
+                <constraint value="id"/>
+            </uniquenessConstraint>
+        </uniquenessConstraints>
+    </entity>
+    <elements>
+        <element name="Categories" positionX="-63" positionY="-18" width="128" height="103"/>
+        <element name="Products" positionX="-54" positionY="18" width="128" height="178"/>
+        <element name="Rankings" positionX="0" positionY="81" width="128" height="73"/>
+        <element name="Tax" positionX="-18" positionY="72" width="128" height="88"/>
+        <element name="Variants" positionX="-36" positionY="45" width="128" height="118"/>
+    </elements>
+</model>
